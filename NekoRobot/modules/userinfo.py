@@ -182,7 +182,7 @@ def get_id(update: Update, context: CallbackContext):
             f"<b>{message.chat.title}</b>'s id is <code>{chat.id}</code>.",
             parse_mode=ParseMode.HTML,
         )
-
+    return user.id
 
 @tbot.on(
     events.NewMessage(
