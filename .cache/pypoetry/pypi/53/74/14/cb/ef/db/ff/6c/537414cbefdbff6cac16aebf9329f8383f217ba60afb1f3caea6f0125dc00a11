@@ -1,0 +1,1 @@
+9999999999{"name": "gpytranslate", "version": "1.4.0", "summary": "A Python3 library for translating text using Google Translate API.", "platform": "", "requires_dist": ["httpx", "aiofiles"], "requires_python": ">=3.6", "files": [], "_cache_version": "1.0.0"}

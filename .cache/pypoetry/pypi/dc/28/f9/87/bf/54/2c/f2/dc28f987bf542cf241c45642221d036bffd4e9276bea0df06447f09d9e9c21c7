@@ -1,0 +1,1 @@
+9999999999{"name": "pykeyboard", "version": "0.1.5", "summary": "Best Keyboard and Pagination for the Pyrogram Library.", "platform": "", "requires_dist": ["pyrogram", "tgcrypto"], "requires_python": null, "files": [], "_cache_version": "1.0.0"}

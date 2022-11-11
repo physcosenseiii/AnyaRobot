@@ -1,0 +1,1 @@
+9999999999{"name": "feedparser", "version": "6.0.10", "summary": "Universal feed parser, handles RSS 0.9x, RSS 1.0, RSS 2.0, CDF, Atom 0.3, and Atom 1.0 feeds", "platform": "POSIX", "requires_dist": ["sgmllib3k"], "requires_python": ">=3.6", "files": [], "_cache_version": "1.0.0"}

@@ -1,0 +1,1 @@
+9999999999{"name": "Telethon", "version": "1.25.4", "summary": "Full-featured Telegram client library for Python 3", "platform": null, "requires_dist": ["pyaes", "rsa", "cryptg ; extra == 'cryptg'"], "requires_python": ">=3.5", "files": [], "_cache_version": "1.0.0"}

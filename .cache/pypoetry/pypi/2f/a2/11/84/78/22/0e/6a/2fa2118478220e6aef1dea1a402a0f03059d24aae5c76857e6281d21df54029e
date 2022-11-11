@@ -1,0 +1,1 @@
+9999999999{"name": "markdown2", "version": "2.4.5", "summary": "A fast and complete Python implementation of Markdown", "platform": "any", "requires_dist": ["pygments (>=2.7.3) ; extra == 'all'", "pygments (>=2.7.3) ; extra == 'code_syntax_highlighting'"], "requires_python": ">=3.5, <4", "files": [], "_cache_version": "1.0.0"}
