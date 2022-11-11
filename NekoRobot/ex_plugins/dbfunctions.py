@@ -37,25 +37,26 @@ async def get_karmas_count() -> dict:
         chats_count += 1
     return {"chats_count": chats_count, "karmas_count": karmas_count}
 
-async def get_karmas(chat_id: int) -> Dict[str, int]:
-    karma = karmadb.find_one({"chat_id": chat_id})
-    if not karma:
-        return {}
-    return karma["karma"]
+# async def get_karmas(chat_id: int) -> Dict[str, int]:
+    # karma = karmadb.find_one({"chat_id": chat_id})
+    # if not karma:
+    #     return {}
+    # return karma["karma"]
 
-async def get_karma(chat_id: int, name: str) -> Union[bool, dict]:
+# async def get_karma(chat_id: int, name: str) -> Union[bool, dict]:
+async def get_karma(name: str) -> Union[bool, dict]:
     name = name.lower().strip()
-    karmas = await get_karmas(chat_id)
-    if name in karmas:
-        return karmas[name]
+    # karmas = await get_karmas(chat_id)
+    # if name in karmas:
+    return name
 
 
-async def update_karma(chat_id: int, name: str, karma: dict):
+# async def update_karma(chat_id: int, name: str, karma: dict):
+async def update_karma(name: str, karma: dict):
     name = name.lower().strip()
-    karmas = await get_karmas(chat_id)
-    karmas[name] = karma
-    karmadb.update_one(
-        {"chat_id": chat_id}, {"$set": {"karma": karmas}}, upsert=True
+    # karmas = await get_karmas(chat_id)
+    # karmas[name] = karma
+    karmadb.update_one({"$set": {"karma": karma}}, upsert=True
     )
 
 async def is_karma_on(chat_id: int) -> bool:

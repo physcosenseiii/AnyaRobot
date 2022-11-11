@@ -15,7 +15,7 @@ from telegram import MessageEntity, Update
 from NekoRobot.ex_plugins.dbfunctions import(
     alpha_to_int,
     get_karma,
-    get_karmas,
+    # get_karmas,
     int_to_alpha,
     update_karma,
 )
@@ -37,10 +37,10 @@ regex_downvote = r"^(\-|\-\-|\-1|👎|noob|baka|idiot|chutiya|nub|noob|wrong|inc
   group=karma_positive_group,
 )
 async def upvote(_,message):
-  chat_id = message.chat.id
-  is_karma = sql.is_karma(chat_id)
-  if not is_karma:
-        return
+#   chat_id = message.chat.id
+#   is_karma = sql.is_karma(chat_id)
+#   if not is_karma:
+#         return
   if not message.reply_to_message.from_user:
         return
   if not message.from_user:
@@ -49,17 +49,15 @@ async def upvote(_,message):
         return
   user_id = message.reply_to_message.from_user.id
   user_mention = message.reply_to_message.from_user.mention
-  current_karma = await get_karma(
-        chat_id, await int_to_alpha(user_id)
+  current_karma = await get_karma(await int_to_alpha(user_id)
     )
   if current_karma:
         current_karma = current_karma['karma']
         karma = current_karma + 100
   else:
-        karma = 1
+        karma = 100
   new_karma = {"karma": karma}
-  await update_karma(
-        chat_id, await int_to_alpha(user_id), new_karma
+  await update_karma(await int_to_alpha(user_id), new_karma
     )
   await message.reply_text(
         f"Waku Waku! Anya added 100 dalcs to {user_mention}'s Wallet\nCurrent Dalcs: {karma}Đ"
@@ -77,10 +75,10 @@ async def upvote(_,message):
 )
 
 async def downvote(_, message):
-    chat_id = message.chat.id
-    is_karma = sql.is_karma(chat_id)
-    if not is_karma:
-        return
+    # chat_id = message.chat.id
+    # is_karma = sql.is_karma(chat_id)
+    # if not is_karma:
+    #     return
     if not message.reply_to_message.from_user:
         return
     if not message.from_user:
@@ -90,27 +88,27 @@ async def downvote(_, message):
 
     user_id = message.reply_to_message.from_user.id
     user_mention = message.reply_to_message.from_user.mention
-    current_karma = await get_karma(chat_id, await int_to_alpha(user_id))
+    current_karma = await get_karma(await int_to_alpha(user_id))
     if current_karma:
         current_karma = current_karma["karma"]
         karma = current_karma - 100
     else:
-        karma = 1
+        karma = 100
     new_karma = {"karma": karma}
-    await update_karma(chat_id, await int_to_alpha(user_id), new_karma)
+    await update_karma(await int_to_alpha(user_id), new_karma)
     await message.reply_text(
         f"Anya is Sad :( took 100 dalcs from {user_mention}'s Wallet\nCurrent Dalcs: {karma}Đ"
     )
 
 @app.on_message(filters.command("dalcstat") & filters.group)
 async def karma(_, message):
-    chat_id = message.chat.id
+    # chat_id = message.chat.id
     if not message.reply_to_message:
         m = await message.reply_text("Matte! Anya will ask chichi for wallets of this chat...")
-        karma = await get_karmas(chat_id)
-        if not karma:
-            await m.edit("Anya is Sad. No Dalcs in DB for this chat.")
-            return
+        # karma = await get_karmas(chat_id)
+        # if not karma:
+        #     await m.edit("Anya is Sad. No Dalcs in DB for this chat.")
+        #     return
         msg = f"Dalc list of {message.chat.title}:- \n"
         limit = 0
         karma_dicc = {}
@@ -141,9 +139,9 @@ async def karma(_, message):
         await m.edit(msg)
     else:
         user_id = message.reply_to_message.from_user.id
-        karma = await get_karma(chat_id, await int_to_alpha(user_id))
+        karma = await get_karma(await int_to_alpha(user_id))
         karma = karma["karma"] if karma else 0
-        await message.reply_text(f"Total Dalcs: {karma}Đ")
+        await message.reply_text(f"Total Dalcs: {karma} Đ")
 
 # @app.on_message(filters.command("dalcstat") & filters.group)
 # async def mywallet(_, message):
@@ -168,6 +166,7 @@ async def karma(_, message):
  # ❍ Reply to any meassage with (`-, -1, 👎, noob, baka, idiot, chutiya, nub, noob, wrong, incorrect, chaprii, chapri, weak`) to decrease karma of user.
 
 __mod_name__ = "Currency System"
+
 __help__ = """
 Currency System[Dalc(Đ)]
  ❍ `/dalc` : To enable / disable Currency system
