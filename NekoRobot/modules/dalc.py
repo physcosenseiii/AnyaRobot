@@ -37,9 +37,9 @@ regex_downvote = r"^(\-|\-\-|\-1|👎|noob|baka|idiot|chutiya|nub|noob|wrong|inc
 )
 async def upvote(_,message):
     user_id = message.reply_to_message.from_user.id
-    is_dalc = sql.is_dalc(user_id) 
-    if not is_dalc:
-        return
+    # is_dalc = sql.is_dalc(user_id) 
+    # if not is_dalc:
+    #     return
     if not message.reply_to_message.from_user:
         return
     if message.reply_to_message.from_user.id == message.from_user.id:
@@ -72,9 +72,9 @@ async def upvote(_,message):
 )
 async def downvote(_,message):
     user_id = message.reply_to_message.from_user.id
-    is_dalc = sql.is_dalc(user_id) 
-    if not is_dalc:
-        return
+    # is_dalc = sql.is_dalc(user_id) 
+    # if not is_dalc:
+    #     return
     if not message.reply_to_message.from_user:
         return
     if message.reply_to_message.from_user.id == message.from_user.id:
@@ -100,9 +100,10 @@ async def downvote(_,message):
 #     if not message.reply_to_message:
 #         m = await message.reply_text("Matte! Anya will ask chichi for wallet...")
 
-@app.on_message(filters.command("mywallet") & filters.group)
+# @app.on_message(filters.command("mywallet") & filters.group)
 async def mywallet(update: Update, context: CallbackContext, _,message):
     # user_id = message.
+    message = update.effective_message
     bot, args = context.bot, context.args
     user_id = extract_user(update.effective_message, args)
     dalc = await get_dalcs(user_id)
