@@ -154,7 +154,7 @@ def set_dalc(update: Update, context: CallbackContext):
     if user_id:
       user = bot.get_chat(user_id)
       
-    elif not message.reply_to_message and not args:
+    elif not message.reply_to_message and args:
       user = message.from_user
 
     # elif not message.reply_to_message and not args:
@@ -177,7 +177,7 @@ def set_dalc(update: Update, context: CallbackContext):
 @app.on_message(filters.command("top") & filters.group)
 async def top(_, message):
     m = await message.reply_text("`Matte! Anya will ask chichi for wallet...`")
-    msg = "**Top Wallets:- **\n"
+    msg = "Top Wallets:- \n"
     limit = 0
     toplist = []
     L = [1,2,3,4,5,6,7,8,9,10]
@@ -204,10 +204,10 @@ async def top(_, message):
         if not first_name:
             continue
         username = user.username
-        msg += f"**{dalc_count}** {(first_name[0.12] + '...') if len(first_name) > 12 else first_name}  `{('@' + username) if username else user_idd}`\n"
+        msg += f"{dalc_count} --> {('@' + username) if username else user_idd}\n"
         limit += 1 
     await m.edit(msg)
-
+# {(first_name[0.12] + '...') if len(first_name) > 12 else first_name}
     # toplist.sort()
     # for index, element in enumerate(L):
         # reversetoplist.append((index,element))
@@ -231,6 +231,7 @@ __help__ = """
 Currency System[Dalc(Đ)]
  ❍ `/dalc` : To View Your Dalcs
  ❍ `/top` : View Top Users
+ ❍ `/setdalc` : Reply to user /setdalc <value> (ONLY FOR DEVS)
  ❍ Reply message with (`+, +100`) to add dalcs to there Wallet.
  ❍ Reply message with (`-, -100`) to snitch dalcs from there Wallet.
 """
