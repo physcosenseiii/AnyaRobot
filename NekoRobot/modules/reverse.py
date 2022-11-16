@@ -166,3 +166,12 @@ async def reverse_image_search(client, message: Message):
         text,
         disable_web_page_preview=True,
     )
+
+
+
+__mod_name__ = "Reverse"
+__help__ = """
+*Reverse*
+ ❍ `/pp` : Please reply to a sticker, or an image to search it!
+ ❍ `/reverse` : Please reply to a sticker, or an image to search it!
+"""
