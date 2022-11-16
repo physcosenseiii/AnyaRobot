@@ -11,6 +11,7 @@ from telegram.ext import CallbackContext,Filters,MessageHandler, CommandHandler
 import NekoRobot.modules.sql.users_sql as sql
 from NekoRobot.modules.helper_funcs.chat_status import sudo_plus
 from NekoRobot import NEKO_PTB
+from NekoRobot.sql.users_sql import get_name_by_userid
 
 regex_upvote = r"^((?i)\+|\+\+|\+1|thx|thanx|thanks|pro|cool|good|pro|pero|op|nice|noice|best|uwu|owo|right|correct|peru|piro|👍|\+100)$"
 regex_downvote = r"^(\-|\-\-|\-1|👎|noob|baka|idiot|chutiya|nub|noob|wrong|incorrect|chaprii|chapri|weak|\-100)$"
@@ -148,29 +149,30 @@ async def downvote(_,message):
 
 @sudo_plus
 def set_dalc(update: Update, context: CallbackContext):
-    bot, args = context.bot, context.args
+    # bot, args = context.bot, context.args
     message = update.effective_message
-    user_id = extract_user(update.effective_message, args)
-    if user_id:
-      user = bot.get_chat(user_id)
+    # user_id = extract_user(update.effective_message, args)
+    # if user_id:
+    #   user = bot.get_chat(user_id)
       
-    elif not message.reply_to_message and args:
-      user = message.from_user
+    # elif not message.reply_to_message and args:
+    #   user = message.from_user
 
     # elif not message.reply_to_message and not args:
     #   user = message.from_user
-      
-    query = message.text.split(None, 1)[1]
+    
+    user_idd = message.text.split(None, 1)[1]
+    count = message.text.split(None, 1)[2]
     # dalcset = int(query)
     
-    # if not is_dalc(user.id):
-    #     dalc_create(user.id)
+    if not is_dalc(user_idd):
+        dalc_create(user_idd)
     try :
-        olddalc = int(mywallet(user.id))
-        newdalc = int(query)
+        olddalc = int(mywallet(user_idd))
+        newdalc = int(count)
     except ValueError:
        message.reply_text("Baka Enter A Valid Value")
-    collection.update_one({"user_id":f"{user.id}"}, {'$set':{'dalc': newdalc}})
+    collection.update_one({"user_id":f"{user_idd}"}, {'$set':{'dalc': newdalc}})
 
 
 
@@ -236,3 +238,4 @@ Currency System[Dalc(Đ)]
  ❍ Reply message with (`-, -100`) to snitch dalcs from there Wallet.
 """
 
+# bot.get_chat()
