@@ -41,11 +41,21 @@ from pyrogram.types import InputMediaPhoto, Message
 from NekoRobot import JOIN_LOGGER as MESSAGE_DUMP_CHAT
 from NekoRobot import DRAGONS as SUDOERS
 from NekoRobot import pgram as app
-from NekoRobot import eor 
+# from NekoRobot import eor 
 from NekoRobot.utils.errors import capture_err
 from NekoRobot.utils.functions import get_file_id_from_message
 from NekoRobot.utils.http import get
 
+from inspect import getfullargspec
+
+async def eor(msg: Message, **kwargs):
+    func = (
+        (msg.edit_text if msg.from_user.is_self else msg.reply)
+        if msg.from_user
+        else msg.reply
+    )
+    spec = getfullargspec(func.__wrapped__).args
+    return await func(**{k: v for k, v in kwargs.items() if k in spec})
 
 
 async def get_soup(url: str, headers):
