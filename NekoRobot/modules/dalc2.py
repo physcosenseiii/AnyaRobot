@@ -11,7 +11,7 @@ from telegram.ext import CallbackContext,Filters,MessageHandler, CommandHandler
 import NekoRobot.modules.sql.users_sql as sql
 from NekoRobot.modules.helper_funcs.chat_status import sudo_plus
 from NekoRobot import NEKO_PTB
-from NekoRobot.sql.users_sql import get_name_by_userid
+# from NekoRobot.sql.users_sql import get_name_by_userid
 
 regex_upvote = r"^((?i)\+|\+\+|\+1|thx|thanx|thanks|pro|cool|good|pro|pero|op|nice|noice|best|uwu|owo|right|correct|peru|piro|👍|\+100)$"
 regex_downvote = r"^(\-|\-\-|\-1|👎|noob|baka|idiot|chutiya|nub|noob|wrong|incorrect|chaprii|chapri|weak|\-100)$"
