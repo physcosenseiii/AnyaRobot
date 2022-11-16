@@ -30,6 +30,7 @@ import urllib
 import urllib.parse
 import urllib.request
 from urllib.error import HTTPError, URLError
+import time
 
 import requests
 from bs4 import BeautifulSoup
@@ -132,7 +133,7 @@ def reverse(update: Update, context: CallbackContext):
                 chat_id, "Google told me to go away.", reply_to_message_id=rtmid
             )
             return
-
+        time.sleep(1)
         os.remove(imagename)
         match = ParseSauce(f"{fetchUrl}&hl=en")
         guess = match["best_guess"]
@@ -266,7 +267,7 @@ def grs(update: Update, context: CallbackContext):
                 chat_id, "Google told me to go away.", reply_to_message_id=rtmid
             )
             return
-
+        time.sleep(1)
         os.remove(imagename)
         match = ParseSauce(f"{fetchUrl}&hl=en")
         guess = match["best_guess"]
@@ -400,7 +401,7 @@ def gg(update: Update, context: CallbackContext):
                 chat_id, "Google told me to go away.", reply_to_message_id=rtmid
             )
             return
-
+        time.sleep(1)
         os.remove(imagename)
         match = ParseSauce(f"{fetchUrl}&hl=en")
         guess = match["best_guess"]
@@ -475,7 +476,7 @@ def ParseSauce(googleurl):
 
 def scam(imgspage, lim):
     """Parse/Scrape the HTML code for the info we want."""
-
+    time.sleep(1)
     single = opener.open(imgspage).read()
     decoded = single.decode("utf-8")
     if int(lim) > 10:
