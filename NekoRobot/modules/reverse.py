@@ -120,7 +120,7 @@ async def reverse_image_search(client, message: Message):
         return await m.edit(
             f"**Result**: [Link]({location})",
             disable_web_page_preview=True,
-            parse_mode=ParseMode.MARKDOWN
+            parse_mode=ParseMode.MARKDOWN_V2
         )
 
     # Pass if no images detected
@@ -167,7 +167,7 @@ async def reverse_image_search(client, message: Message):
     await m.edit(
         text,
         disable_web_page_preview=True,
-        parse_mode=ParseMode.MARKDOWN
+        parse_mode=ParseMode.MARKDOWN_V2
     )
 
 
