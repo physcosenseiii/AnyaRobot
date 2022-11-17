@@ -463,7 +463,7 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #         pass
 
 #     for similar_image in soup.findAll("input", {"class": "gLFyf"}):
-#         url = "https://www.google.com/search?tbm=isch&q=" + urllib.parse.quote_plus(
+        # url = "https://www.google.com/search?tbm=isch&q=" + urllib.parse.quote_plus(
 #             similar_image.get("value")
 #         )
 #         results["similar_images"] = url

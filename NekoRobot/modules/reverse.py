@@ -26,6 +26,8 @@ from asyncio import gather, get_running_loop
 from base64 import b64decode
 from io import BytesIO
 from random import randint
+import urllib
+import urllib.parse
 
 import aiofiles
 import requests
@@ -115,15 +117,26 @@ async def reverse_image_search(client, message: Message):
     buttons = [[InlineKeyboardButton("View Similar Images", url=location)]]
     try:
         soup = await get_soup(location, headers=headers)
+        
         div = soup.find_all("div", {"class": "r5a77d"})[0]
         text = div.find("a").text
         text = f"**Result**: [{text}]({location})"
+
     except Exception:
+
+        for similar_image in soup.findAll("input", {"class": "gLFyf"}):
+            url = urllib.parse.quote_plus(
+                similar_image.get("value")
+          )
+        for best_guess in soup.findAll("div", attrs={"class": "r5a77d"}):
+            xd = best_guess.get_text()
+
+
         return await m.edit(
-            f"**Result**: [Link]({location})",
+            f"**Result**: [{url}]({location}) \nBest Guess: {xd}",
             disable_web_page_preview=True,
             parse_mode="Markdown",
-            reply_markup=InlineKeyboardMarkup(buttons)
+            # reply_markup=InlineKeyboardMarkup(buttons)
             # parse_mode=ParseMode.MARKDOWN_V2
         )
 
@@ -172,7 +185,7 @@ async def reverse_image_search(client, message: Message):
         text,
         disable_web_page_preview=True,
         parse_mode="Markdown",
-        reply_markup=InlineKeyboardMarkup(buttons)
+        # reply_markup=InlineKeyboardMarkup(buttons)
         # parse_mode=ParseMode.MARKDOWN_V2
     )
 
