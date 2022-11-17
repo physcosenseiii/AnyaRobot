@@ -126,8 +126,8 @@ PM_START_TEXT = """
 buttons = [
     [
         InlineKeyboardButton(
-            text=f"Add {BOT_NAME} To Your Group",
-            url=f"https://t.me/{BOT_USERNAME}?startgroup=true",
+            text=f"Add Cutie To Your Group",
+            url=f"https://t.me/Anya_ForgerRobot?startgroup=true",
         )
     ],
     [
@@ -453,12 +453,12 @@ def neko_callback_data(update: Update, context: CallbackContext) -> None:
 def get_help(update: Update, context: CallbackContext) -> None:
     chat = update.effective_chat  # type: Optional[Chat]
     args = update.effective_message.text.split(None, 1)
-
+    IMGIMG = "https://telegra.ph/file/150c5f24e2cffe2dc0a4f.jpg"
     # ONLY send help in PM
     if chat.type != chat.PRIVATE:
 
         update.effective_message.reply_photo(
-            HELP_IMG,
+            IMGIMG,
             HELP_MSG,
             reply_markup=InlineKeyboardMarkup(
                 [
