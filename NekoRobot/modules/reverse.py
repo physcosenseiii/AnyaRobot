@@ -41,7 +41,8 @@ from pyrogram.types import InputMediaPhoto, Message
 from NekoRobot import JOIN_LOGGER as MESSAGE_DUMP_CHAT
 from NekoRobot import DRAGONS as SUDOERS
 from NekoRobot import pgram as app
-from telegram import ParseMode
+from telegram import ParseMode, Update
+from telegram import InlineKeyboardButton, InlineKeyboardMarkup
 # from NekoRobot import eor 
 from NekoRobot.utils.errors import capture_err
 from NekoRobot.utils.functions import get_file_id_from_message
@@ -64,7 +65,7 @@ async def get_soup(url: str, headers):
     return BeautifulSoup(html, "html.parser")
 
 
-@app.on_message(filters.command(["reverse", "pp", "grs", "p"]))
+@app.on_message(filters.command(["reverse", "pp", "grs"]))
 @capture_err
 async def reverse_image_search(client, message: Message):
     if not message.reply_to_message:
@@ -111,6 +112,7 @@ async def reverse_image_search(client, message: Message):
         "User-Agent": "Mozilla/5.0 (X11; Linux x86_64; rv:58.0) Gecko/20100101 Firefox/58.0"
     }
 
+    buttons = [[InlineKeyboardButton("View Similar Images", url=location)]]
     try:
         soup = await get_soup(location, headers=headers)
         div = soup.find_all("div", {"class": "r5a77d"})[0]
@@ -120,7 +122,9 @@ async def reverse_image_search(client, message: Message):
         return await m.edit(
             f"**Result**: [Link]({location})",
             disable_web_page_preview=True,
-            parse_mode=ParseMode.MARKDOWN_V2
+            parse_mode="Markdown",
+            reply_markup=InlineKeyboardMarkup(buttons)
+            # parse_mode=ParseMode.MARKDOWN_V2
         )
 
     # Pass if no images detected
@@ -167,7 +171,9 @@ async def reverse_image_search(client, message: Message):
     await m.edit(
         text,
         disable_web_page_preview=True,
-        parse_mode=ParseMode.MARKDOWN_V2
+        parse_mode="Markdown",
+        reply_markup=InlineKeyboardMarkup(buttons)
+        # parse_mode=ParseMode.MARKDOWN_V2
     )
 
 

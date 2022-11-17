@@ -106,11 +106,11 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #         except ValueError as VE:
 #             msg.reply_text(f"{VE}\nPlease try again using http or https protocol.")
 #             return
-#     else:
-#         msg.reply_markdown(
-#             "Please reply to a sticker, or an image to search it!\nDo you know that you can search an image with a link too? `/reverse [picturelink] <amount>`."
-#         )
-#         return
+    # else:
+    #     msg.reply_markdown(
+    #         "Please reply to a sticker, or an image to search it!\nDo you know that you can search an image with a link too? `/reverse [picturelink] <amount>`."
+    #     )
+    #     return
 
 #     try:
 #         searchUrl = "https://www.google.com/searchbyimage/upload"
