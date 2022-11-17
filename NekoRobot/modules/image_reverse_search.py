@@ -450,7 +450,7 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 # def ParseSauce(googleurl):
 #     """Parse/Scrape the HTML code for the info we want."""
 
-#     source = opener.open(googleurl).read()
+    # source = opener.open(googleurl).read()
 #     soup = BeautifulSoup(source, "html.parser")
 
 #     results = {"similar_images": "", "override": "", "best_guess": ""}

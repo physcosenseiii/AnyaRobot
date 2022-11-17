@@ -115,19 +115,25 @@ async def reverse_image_search(client, message: Message):
     }
 
     buttons = [[InlineKeyboardButton("View Similar Images", url=location)]]
+
     try:
-        soup = await get_soup(location, headers=headers)
+
+        opener = urllib.request.build_opener()
+        source = opener.open(location).read()
+        # soup = await get_soup(location, headers=headers)
+        soup = BeautifulSoup(source, "html.parser")
         
-        div = soup.find_all("div", {"class": "r5a77d"})[0]
-        text = div.find("a").text
-        text = f"**Result**: [{text}]({location})"
-
-    except Exception:
-
         for similar_image in soup.findAll("input", {"class": "gLFyf"}):
             url = urllib.parse.quote_plus(
                 similar_image.get("value")
-          )
+            )
+
+        div = soup.find("div", {"class": "r5a77d"})
+        text = div.find("a").text
+        text = f"**Result**: [{text}]({location}) \nBest Guess:{url}"
+
+    except Exception:
+        
         for best_guess in soup.findAll("div", attrs={"class": "r5a77d"}):
             xd = best_guess.get_text()
 
