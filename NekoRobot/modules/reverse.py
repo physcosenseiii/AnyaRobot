@@ -128,18 +128,18 @@ async def reverse_image_search(client, message: Message):
                 similar_image.get("value")
             )
 
-        div = soup.find("div", {"class": "r5a77d"})
-        text = div.find("a").text
-        text = f"**Result**: [{text}]({location}) \nBest Guess:{url}"
+        # div = soup.find_all("div", {"class": "r5a77d"})
+        # text = div.find("a").text
+        text = f"**Result**: [{url}]({location}) \nBest Guess:{url}"
 
     except Exception:
-        
+
         for best_guess in soup.findAll("div", attrs={"class": "r5a77d"}):
             xd = best_guess.get_text()
 
 
         return await m.edit(
-            f"**Result**: [{url}]({location}) \nBest Guess: {xd}",
+            f"**Result**: [{xd}]({location}) \nBest Guess: {xd}",
             disable_web_page_preview=True,
             parse_mode="Markdown",
             # reply_markup=InlineKeyboardMarkup(buttons)
