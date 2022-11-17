@@ -25,7 +25,7 @@ GIF_ID = "CgACAgQAAx0CSVUvGgAC7KpfWxMrgGyQs-GUUJgt-TSO8cOIDgACaAgAAlZD0VHT3Zynpr
 @register(pattern="^/truth ?(.*)")
 async def _(td):
     try:
-        resp = requests.get("https://api.safone.tech/truth").json()
+        resp = requests.get("https://api.safone.me/truth").json()
         results = f"{resp['truth']}"
         return await td.reply(results)
     except Exception:
@@ -35,7 +35,7 @@ async def _(td):
 @register(pattern="^/dare ?(.*)")
 async def _(dr):
     try:
-        resp = requests.get("https://api.safone.tech/dare").json()
+        resp = requests.get("https://api.safone.me/dare").json()
         results = f"{resp['dare']}"
         return await dr.reply(results)
     except Exception:
@@ -45,7 +45,7 @@ async def _(dr):
 @register(pattern="^/fact ?(.*)")
 async def _(dr):
     try:
-        resp = requests.get("https://api.safone.tech/fact").json()
+        resp = requests.get("https://api.safone.me/fact").json()
         results = f"{resp['fact']}"
         return await dr.reply(results)
     except Exception:
@@ -55,7 +55,7 @@ async def _(dr):
 @register(pattern="^/quotes ?(.*)")
 async def _(dr):
     try:
-        resp = requests.get("https://api.safone.tech/quote").json()
+        resp = requests.get("https://api.safone.me/quote").json()
         results = f"{resp['quote']}"
         return await dr.reply(results)
     except Exception:
@@ -65,7 +65,7 @@ async def _(dr):
 @register(pattern="^/joke ?(.*)")
 async def _(dr):
     try:
-        resp = requests.get("https://api.safone.tech/joke").json()
+        resp = requests.get("https://api.safone.me/joke").json()
         results = f"{resp['joke']}"
         return await dr.reply(results)
     except Exception:
@@ -75,7 +75,7 @@ async def _(dr):
 @register(pattern="^/bully ?(.*)")
 async def _(dr):
     try:
-        resp = requests.get("https://api.safone.tech/bully").json()
+        resp = requests.get("https://api.safone.me/bully").json()
         results = f"{resp['bully']}"
         return await dr.reply(results)
     except Exception:
@@ -85,7 +85,7 @@ async def _(dr):
 @register(pattern="^/advice ?(.*)")
 async def _(dr):
     try:
-        resp = requests.get("https://api.safone.tech/advice").json()
+        resp = requests.get("https://api.safone.me/advice").json()
         results = f"{resp['advice']}"
         return await dr.reply(results)
     except Exception:
